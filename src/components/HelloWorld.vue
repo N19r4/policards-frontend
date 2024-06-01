@@ -1,38 +1,26 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-
-defineProps<{ msg: string }>()
+import Button from 'primevue/button'
+import Card from 'primevue/card'
 
 const count = ref(0)
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
-  </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Install
-    <a href="https://github.com/vuejs/language-tools" target="_blank">Volar</a>
-    in your IDE for a better DX
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
+  <Card>
+    <template #title>Simple Card</template>
+    <template #content>
+      <div class="logo">
+        <img src="../assets/vue.svg" alt="vue logo" />
+      </div>
+      <p class="m-0">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam
+        deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate
+        neque quas!
+      </p>
+      <Button type="button" @click="count++">count is {{ count }}</Button>
+    </template>
+  </Card>
 </template>
 
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>
+<style scoped lang="scss"></style>
