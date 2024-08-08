@@ -204,6 +204,25 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@primevue/core@4.0.0-rc.1":
+  version "4.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@primevue/core/-/core-4.0.0-rc.1.tgz#c4a7182620f1a452e7dda3a57ddcc269120db415"
+  integrity sha512-V9Q3fvG/KiIX8k0Nt9dLvp6miQkKfEqI91M0VVGwbN8jLNiOVLrT2jbC1fCHwoK6FpQgkehlqE7qQ7iQEpWTBQ==
+  dependencies:
+    "@primevue/themes" "4.0.0-rc.1"
+
+"@primevue/icons@4.0.0-rc.1":
+  version "4.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@primevue/icons/-/icons-4.0.0-rc.1.tgz#73fca595a2eafc30f98ced8ee68de81e34a4fbff"
+  integrity sha512-3X8cYMyhBX81cRhoMsmS+iGmkV4t9T1qeXxo3mmD3b5y+O7ZRNwpCHKtMrBontlQoX/5r4WWrZO9A2nPDGB4Xg==
+  dependencies:
+    "@primevue/core" "4.0.0-rc.1"
+
+"@primevue/themes@4.0.0-rc.1":
+  version "4.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@primevue/themes/-/themes-4.0.0-rc.1.tgz#7751e46537477908d6735750424b9042b340e8a3"
+  integrity sha512-t650tX7MRG4VIyy4LgsO3+F4tyrAJnKl3joyYGNjrSAoMd2kai7Ex1rOg/LyTEMHWa7DLcEDOr6LyWErxa4+hA==
+
 "@rollup/rollup-android-arm-eabi@4.17.2":
   version "4.17.2"
   resolved "https://registry.yarnpkg.com/@rollup/rollup-android-arm-eabi/-/rollup-android-arm-eabi-4.17.2.tgz#1a32112822660ee104c5dd3a7c595e26100d4c2d"
@@ -1094,10 +1113,23 @@ prettier@3.2.5:
   resolved "https://registry.npmjs.org/prettier/-/prettier-3.2.5.tgz"
   integrity sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==
 
-primevue@^3.52.0:
-  version "3.52.0"
-  resolved "https://registry.yarnpkg.com/primevue/-/primevue-3.52.0.tgz#819d1d70fe37cea7dcd06076b7c3cd9ee4e3c6a4"
-  integrity sha512-HLOVP5YI0ArFKUhIyfZsWmTNMaBYNCBWC/3DYvdd/Po4LY5/WXf7yIYvArE2q/3OuwSXJXvjlR8UNQeJYRSQog==
+primeflex@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/primeflex/-/primeflex-3.3.1.tgz#361dddf6eb5db50d733e4cddd4b6e376a3d7bd68"
+  integrity sha512-zaOq3YvcOYytbAmKv3zYc+0VNS9Wg5d37dfxZnveKBFPr7vEIwfV5ydrpiouTft8MVW6qNjfkaQphHSnvgQbpQ==
+
+primeicons@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/primeicons/-/primeicons-7.0.0.tgz#6b25c3fdcb29bb745a3035bdc1ed5902f4a419cf"
+  integrity sha512-jK3Et9UzwzTsd6tzl2RmwrVY/b8raJ3QZLzoDACj+oTJ0oX7L9Hy+XnVwgo4QVKlKpnP/Ur13SXV/pVh4LzaDw==
+
+primevue@4.0.0-rc.1:
+  version "4.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/primevue/-/primevue-4.0.0-rc.1.tgz#a1cc44de2d63956e0c6255515df16579f6d53c77"
+  integrity sha512-dSOHMHujpa14J0tG1IwXoci1/Q+PE/ILzzyOfAn4v44AqL9lW3QYkf70PszMnmHetnIBR7pZ0T1Y8KUyFr2REg==
+  dependencies:
+    "@primevue/core" "4.0.0-rc.1"
+    "@primevue/icons" "4.0.0-rc.1"
 
 punycode@^2.1.0:
   version "2.3.1"

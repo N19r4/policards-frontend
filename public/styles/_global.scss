@@ -1,0 +1,30 @@
+@use './colors' as *;
+
+@forward './body.scss';
+
+@forward 'primevue/card.scss';
+
+
+body {
+  background-color: $MAIN_BACKGROUND;
+  color: $MAIN_TEXT;
+  font-family: 'Nunito';
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    color: $MAIN_TEXT;
+    font-size: 36px;
+    font-weight: bold;
+  }
+  
+h3 {
+    color: $SUBTITLE;
+    font-size: 24px;
+    font-weight: 300;
+}
