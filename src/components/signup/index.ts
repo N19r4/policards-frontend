@@ -1,0 +1,1 @@
+export {default as signupWizard} from './signupWizard.vue'

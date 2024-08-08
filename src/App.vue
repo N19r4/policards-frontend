@@ -7,4 +7,7 @@ import { TheMenu } from './components'
   <RouterView />
 </template>
 
-<style scoped></style>
+<style lang="scss">
+@use '../public//styles/font';
+@use '../public//styles/global';
+</style>
