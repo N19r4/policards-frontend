@@ -10,7 +10,7 @@ import Divider from 'primevue/divider'
 import Checkbox from 'primevue/checkbox'
 import ToggleButton from 'primevue/togglebutton'
 
-import TheForm from '../global/TheForm.vue'
+import TheForm from '../global/reusable/TheForm.vue'
 import { wizardSteps } from './config'
 
 import { Field, UserData } from './types'
@@ -94,7 +94,7 @@ const userData: Ref<UserData[]> = ref([
   },
 ])
 
-const stepIndex = ref(3)
+const stepIndex = ref(1)
 const currentStep = computed(() => wizardSteps.value.find((step) => step.index === stepIndex.value)!)
 
 const goBack = () => {
