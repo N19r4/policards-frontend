@@ -1,12 +1,7 @@
-<script setup lang="ts">
-import { ref, watch } from 'vue'
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-    <h1>Main Hub</h1>
+  <h1>Main Hub</h1>
 </template>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

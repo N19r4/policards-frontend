@@ -3,6 +3,8 @@
 @forward './body.scss';
 
 @forward 'primevue/card.scss';
+@forward 'primevue/selectbox.scss';
+@forward 'primevue/button.scss';
 
 
 body {
@@ -27,4 +29,10 @@ h3 {
     color: $SUBTITLE;
     font-size: 24px;
     font-weight: 300;
+}
+
+label, a {
+  color: $SUBTITLE;
+  font-size: 16px;
+  font-weight: 300;
 }

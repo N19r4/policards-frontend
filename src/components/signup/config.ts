@@ -1,6 +1,7 @@
+import { ref, Ref } from "vue";
 import { WizardStep } from "./types";
 
-export const wizardSteps: WizardStep[] = [
+export const wizardSteps: Ref<WizardStep[]> = ref([
     {
       index: 1,
       title: 'Hello there!',
@@ -8,25 +9,27 @@ export const wizardSteps: WizardStep[] = [
       fields: [
         {
           type: 'text',
-          label: 'Full Name',
+          label: 'full name',
           model: 'fullName',
           icon: 'pi pi-user',
         },
         {
           type: 'text',
-          label: 'Email',
+          label: 'email',
           model: 'email',
           icon: 'pi pi-envelope',
         },
         {
           type: 'text',
-          label: 'Username',
+          label: 'username',
           model: 'username',
           icon: 'pi pi-at',
         },
       ],
       prevStep: null,
       nextStep: 2,
+      prevStepText: 'Go back',
+      nextStepText: 'Next'
     },
     {
       index: 2,
@@ -35,17 +38,24 @@ export const wizardSteps: WizardStep[] = [
       fields: [
         {
           type: 'password',
-          label: 'Password',
+          label: 'password',
           model: 'password',
         },
         {
           type: 'password',
-          label: 'Repeat Password',
+          label: 'repeat password',
           model: 'repeatPassword',
         },
+        {
+          type: 'checkbox',
+          label: 'I agree to the terms and conditions.',
+          model: 'accept'
+        }
       ],
       prevStep: 1,
       nextStep: 3,
+      prevStepText: '',
+      nextStepText: 'Next'
     },
     {
       index: 3,
@@ -54,11 +64,11 @@ export const wizardSteps: WizardStep[] = [
       fields: [
         {
           type: 'chips',
-          label: 'Topics',
+          label: 'topics',
           model: 'topics',
           options: [
-            { name: 'Technology', code: 'tech' },
-            { name: 'Science', code: 'sci' },
+            { name: 'Technology', code: 'tech', chosen: true },
+            { name: 'Science', code: 'sci', chosen: true },
             { name: 'Art', code: 'art' },
             { name: 'Music', code: 'music' },
             { name: 'Sports', code: 'sports' },
@@ -67,5 +77,7 @@ export const wizardSteps: WizardStep[] = [
       ],
       prevStep: 2,
       nextStep: null,
+      prevStepText: '',
+      nextStepText: 'Register'
     },
-  ]
+  ])

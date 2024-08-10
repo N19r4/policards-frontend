@@ -6,13 +6,17 @@ import InputText from 'primevue/inputtext'
 import Password from 'primevue/password'
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
-import MultiSelect from 'primevue/multiselect'
 import Divider from 'primevue/divider'
+import Checkbox from 'primevue/checkbox'
+import ToggleButton from 'primevue/togglebutton'
 
 import TheForm from '../global/TheForm.vue'
 import { wizardSteps } from './config'
 
 import { Field, UserData } from './types'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const validatePassword = (value: any) => {
   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
@@ -33,8 +37,9 @@ const validateEmail = (value: any) => {
   return check ? '' : 'Invalid email format'
 }
 
-const validateRequired = (value: string) => {
-  const check = value.trim() !== ''
+const validateRequired = (value: string | boolean) => {
+  if (!value) return 'This field is required'
+  const check = value.toString().trim() !== ''
   return check ? '' : 'This field is required'
 }
 
@@ -76,15 +81,26 @@ const userData: Ref<UserData[]> = ref([
   },
   {
     name: 'topics',
-    value: ['Science'],
+    value: [],
+    invalid: false,
+    message: '',
+  },
+  {
+    name: 'accept',
+    value: false,
     invalid: false,
     validations: [validateRequired],
     message: '',
   },
 ])
 
-const stepIndex = ref(1)
-const currentStep = computed(() => wizardSteps.find((step) => step.index === stepIndex.value)!)
+const stepIndex = ref(3)
+const currentStep = computed(() => wizardSteps.value.find((step) => step.index === stepIndex.value)!)
+
+const goBack = () => {
+  if (stepIndex.value !== 1) stepIndex.value--
+  else router.push('/login')
+}
 
 const checkIfValid = () => {
   const stepFields = currentStep.value.fields
@@ -103,6 +119,7 @@ const checkIfValid = () => {
   })
 
   if (fields.some(({ invalid }) => invalid)) return
+  if (stepIndex.value === 3) return router.push('/flashcard-sets')
   stepIndex.value++
 }
 
@@ -117,20 +134,22 @@ const getUserDataForField = (field: Field) => {
       <div v-for="field in currentStep.fields" :key="field.label">
         <div class="flex align-items-center gap-2">
           <IconField v-if="field.type === 'text'">
-            <InputIcon :class="field.icon" />
             <InputText
               v-model="getUserDataForField(field).value"
               :placeholder="field.label"
               :invalid="getUserDataForField(field).invalid"
             />
+            <InputIcon :class="field.icon" />
           </IconField>
+
           <Password
             v-if="field.type === 'password' && field.model === 'password'"
             v-model="getUserDataForField(field).value"
             :placeholder="field.label"
-            :feedback="true"
-            :toggleMask="true"
+            feedback
+            toggleMask
             :invalid="getUserDataForField(field).invalid"
+            :onpaste="(e: any) => e.preventDefault()"
           >
             <template #footer>
               <Divider />
@@ -147,21 +166,26 @@ const getUserDataForField = (field: Field) => {
             v-model="getUserDataForField(field).value"
             :placeholder="field.label"
             :feedback="false"
-            :toggleMask="true"
+            toggleMask
             :invalid="getUserDataForField(field).invalid"
             :onpaste="(e: any) => e.preventDefault()"
-          ></Password>
-          <MultiSelect
-            v-if="field.type === 'chips'"
-            v-model="getUserDataForField(field).value"
-            :options="field.options"
-            optionLabel="name"
-            filter
-            placeholder="Select topics"
-            :maxSelectedLabels="3"
-            class="w-full md:w-80"
-            :invalid="getUserDataForField(field).invalid"
           />
+
+          <div v-if="field.type === 'chips'" class="card flex flex-wrap gap-2">
+            <ToggleButton
+              v-for="option in field.options"
+              v-model="option.chosen"
+              :onLabel="option.name"
+              :offLabel="option.name"
+              onIcon="pi pi-check"
+              offIcon="pi pi-times"
+            />
+          </div>
+          <div v-if="field.type === 'checkbox'" class="flex items-center gap-2">
+            <Checkbox :id="field.model" v-model="getUserDataForField(field).value" :name="field.model" :value="false" />
+            <label style="width: 219px" :for="field.model">{{ field.label }}</label>
+          </div>
+
           <i
             v-if="getUserDataForField(field).invalid"
             v-tooltip="getUserDataForField(field).message"
@@ -169,12 +193,21 @@ const getUserDataForField = (field: Field) => {
           ></i>
         </div>
       </div>
-      ></template
-    >
+      >
+    </template>
     <template #footer>
       <div class="flex gap-3">
-        <Button icon="pi pi-arrow-left" @click="stepIndex--" />
-        <Button label="Next" icon="pi pi-arrow-right" iconPos="right" @click="checkIfValid" />
+        <Button
+          :label="wizardSteps.find(({ index }) => index === stepIndex)?.prevStepText"
+          icon="pi pi-arrow-left"
+          @click="goBack()"
+        />
+        <Button
+          :label="wizardSteps.find(({ index }) => index === stepIndex)?.nextStepText"
+          icon="pi pi-arrow-right"
+          iconPos="right"
+          @click="checkIfValid"
+        />
       </div>
     </template>
   </TheForm>

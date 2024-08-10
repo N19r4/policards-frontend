@@ -3,7 +3,7 @@ export type Field = {
     label: string;
     model: string;
     icon?: string;
-    options?: { name: string; code: string }[];
+    options?: { name: string; code: string, chosen?: boolean }[];
 }
 
 export type WizardStep = {
@@ -13,6 +13,8 @@ export type WizardStep = {
     fields: Field[];
     prevStep: number | null;
     nextStep: number | null;
+    prevStepText: string;
+    nextStepText: string;
 }
 
 export type UserData = {
