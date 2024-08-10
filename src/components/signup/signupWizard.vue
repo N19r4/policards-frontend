@@ -11,9 +11,8 @@ import Checkbox from 'primevue/checkbox'
 import ToggleButton from 'primevue/togglebutton'
 
 import TheForm from '../global/reusable/TheForm.vue'
-import { wizardSteps } from './config'
 
-import { Field, UserData } from './types'
+import { WizardStep } from './types'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -27,7 +26,7 @@ const validatePassword = (value: any) => {
 }
 
 const validateRepeatPassword = (value: any) => {
-  const check = value === userData.value.find(({ name }) => name === 'password')!.value
+  const check = value === currentStep.value.fields.find(({ model }) => model === 'password')?.value
   return check ? '' : 'Passwords do not match'
 }
 
@@ -43,54 +42,110 @@ const validateRequired = (value: string | boolean) => {
   return check ? '' : 'This field is required'
 }
 
-const userData: Ref<UserData[]> = ref([
+const wizardSteps: Ref<WizardStep[]> = ref([
   {
-    name: 'email',
-    value: '',
-    invalid: false,
-    validations: [validateEmail, validateRequired],
-    message: '',
+    index: 1,
+    title: 'Hello there!',
+    subtitle: "Let's get to know you",
+    fields: [
+      {
+        type: 'text',
+        label: 'full name',
+        model: 'fullName',
+        icon: 'pi pi-user',
+        value: '',
+        invalid: false,
+        validations: [validateRequired],
+        message: '',
+      },
+      {
+        type: 'text',
+        label: 'email',
+        model: 'email',
+        icon: 'pi pi-envelope',
+        value: '',
+        invalid: false,
+        validations: [validateEmail, validateRequired],
+        message: '',
+      },
+      {
+        type: 'text',
+        label: 'username',
+        model: 'username',
+        icon: 'pi pi-at',
+        value: '',
+        invalid: false,
+        validations: [validateRequired],
+        message: '',
+      },
+    ],
+    prevStep: null,
+    nextStep: 2,
+    prevStepText: 'Go back',
+    nextStepText: 'Next',
   },
   {
-    name: 'username',
-    value: '',
-    invalid: false,
-    validations: [validateRequired],
-    message: '',
+    index: 2,
+    title: `Hello there!`,
+    subtitle: "Let's secure your account",
+    fields: [
+      {
+        type: 'password',
+        label: 'password',
+        model: 'password',
+        value: '',
+        invalid: false,
+        message: '',
+        validations: [validatePassword, validateRequired],
+      },
+      {
+        type: 'password',
+        label: 'repeat password',
+        model: 'repeatPassword',
+        value: '',
+        invalid: false,
+        message: '',
+        validations: [validateRepeatPassword, validateRequired],
+      },
+      {
+        type: 'checkbox',
+        label: 'I agree to the terms and conditions.',
+        model: 'accept',
+        value: false,
+        invalid: false,
+        validations: [validateRequired],
+        message: '',
+      },
+    ],
+    prevStep: 1,
+    nextStep: 3,
+    prevStepText: '',
+    nextStepText: 'Next',
   },
   {
-    name: 'fullName',
-    value: '',
-    invalid: false,
-    validations: [validateRequired],
-    message: '',
-  },
-  {
-    name: 'password',
-    value: '',
-    invalid: false,
-    message: '',
-    validations: [validatePassword, validateRequired],
-  },
-  {
-    name: 'repeatPassword',
-    value: '',
-    invalid: false,
-    message: '',
-    validations: [validateRepeatPassword, validateRequired],
-  },
-  {
-    name: 'topics',
-    value: [],
-    invalid: false,
-    message: '',
-  },
-  {
-    name: 'accept',
-    value: false,
-    invalid: false,
-    validations: [validateRequired],
-    message: '',
+    index: 3,
+    title: 'Welcome aboard!',
+    subtitle: 'Select your interests',
+    fields: [
+      {
+        type: 'chips',
+        label: 'topics',
+        model: 'topics',
+        invalid: false,
+        message: '',
+        value: [
+          { name: 'Technology', code: 'tech', chosen: true },
+          { name: 'Science', code: 'sci', chosen: true },
+          { name: 'Art', code: 'art' },
+          { name: 'Music', code: 'music' },
+          { name: 'Sports', code: 'sports' },
+        ],
+      },
+    ],
+    prevStep: 2,
+    nextStep: null,
+    prevStepText: '',
+    nextStepText: 'Register',
   },
 ])
 
@@ -104,8 +159,7 @@ const goBack = () => {
 
 const checkIfValid = () => {
   const stepFields = currentStep.value.fields
-  const fields = userData.value.filter(({ name }) => stepFields.find((field) => field.model === name))
-  fields.forEach((field) => {
+  stepFields.forEach((field) => {
     field.invalid = false
     field.message = ''
     if (!field.validations) return
@@ -118,13 +172,9 @@ const checkIfValid = () => {
     })
   })
 
-  if (fields.some(({ invalid }) => invalid)) return
+  if (stepFields.some(({ invalid }) => invalid)) return
   if (stepIndex.value === 3) return router.push('/flashcard-sets')
   stepIndex.value++
-}
-
-const getUserDataForField = (field: Field) => {
-  return userData.value.find(({ name }) => name === field.model)!
 }
 </script>
 
@@ -134,21 +184,17 @@ const getUserDataForField = (field: Field) => {
       <div v-for="field in currentStep.fields" :key="field.label">
         <div class="flex align-items-center gap-2">
           <IconField v-if="field.type === 'text'">
-            <InputText
-              v-model="getUserDataForField(field).value"
-              :placeholder="field.label"
-              :invalid="getUserDataForField(field).invalid"
-            />
+            <InputText v-model="field.value" :placeholder="field.label" :invalid="field.invalid" />
             <InputIcon :class="field.icon" />
           </IconField>
 
           <Password
             v-if="field.type === 'password' && field.model === 'password'"
-            v-model="getUserDataForField(field).value"
+            v-model="field.value"
             :placeholder="field.label"
             feedback
             toggleMask
-            :invalid="getUserDataForField(field).invalid"
+            :invalid="field.invalid"
             :onpaste="(e: any) => e.preventDefault()"
           >
             <template #footer>
@@ -163,17 +209,17 @@ const getUserDataForField = (field: Field) => {
           </Password>
           <Password
             v-if="field.type === 'password' && field.model === 'repeatPassword'"
-            v-model="getUserDataForField(field).value"
+            v-model="field.value"
             :placeholder="field.label"
             :feedback="false"
             toggleMask
-            :invalid="getUserDataForField(field).invalid"
+            :invalid="field.invalid"
             :onpaste="(e: any) => e.preventDefault()"
           />
 
           <div v-if="field.type === 'chips'" class="card flex flex-wrap gap-2">
             <ToggleButton
-              v-for="option in field.options"
+              v-for="option in field.value"
               v-model="option.chosen"
               :onLabel="option.name"
               :offLabel="option.name"
@@ -182,15 +228,11 @@ const getUserDataForField = (field: Field) => {
             />
           </div>
           <div v-if="field.type === 'checkbox'" class="flex items-center gap-2">
-            <Checkbox :id="field.model" v-model="getUserDataForField(field).value" :name="field.model" :value="false" />
+            <Checkbox :id="field.model" v-model="field.value" :name="field.model" :value="false" />
             <label style="width: 219px" :for="field.model">{{ field.label }}</label>
           </div>
 
-          <i
-            v-if="getUserDataForField(field).invalid"
-            v-tooltip="getUserDataForField(field).message"
-            class="pi pi-exclamation-circle text-red-500"
-          ></i>
+          <i v-if="field.invalid" v-tooltip="field.message" class="pi pi-exclamation-circle text-red-500"></i>
         </div>
       </div>
       >
