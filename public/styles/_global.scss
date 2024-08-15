@@ -1,13 +1,9 @@
 @use './colors' as *;
 
 @forward './body.scss';
-
 @forward 'primevue/card.scss';
 
-
 body {
-  // background-color: $MAIN_BACKGROUND;
-  // color: $MAIN_TEXT;
   font-family: 'Nunito';
 }
 
@@ -31,4 +27,11 @@ h3 {
   color: $SUBTITLE;
   font-size: 24px;
   font-weight: 300;
+}
+
+.p-menu-end,
+.p-menubar-submenu,
+.p-menu-list {
+  background-color: #000 !important;
+  z-index: 2 !important;
 }

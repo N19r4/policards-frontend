@@ -9,7 +9,8 @@ import InputIcon from 'primevue/inputicon'
 import MultiSelect from 'primevue/multiselect'
 import Divider from 'primevue/divider'
 
-import TheForm from '../global/TheForm.vue'
+import TheForm from '../global/used-once/TheForm.vue'
+
 import { wizardSteps } from './config'
 
 import { Field, UserData } from './types'

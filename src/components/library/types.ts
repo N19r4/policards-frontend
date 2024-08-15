@@ -8,6 +8,4 @@ export interface LibraryItem {
   favourite: boolean
   status: string
   rating: number
-  dateModified: string
-  owner: string
 }

@@ -7,7 +7,7 @@ import Password from 'primevue/password'
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 
-import TheForm from '../global/TheForm.vue'
+import TheForm from '../global/used-once/TheForm.vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

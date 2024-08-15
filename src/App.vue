@@ -1,17 +1,10 @@
 <script setup lang="ts">
-import { TheMenu } from './components'
+import { TheMenu } from './components/global/used-once'
 </script>
 
 <template>
-<<<<<<< Updated upstream
-  <!-- <TheMenu /> -->
+  <TheMenu />
   <RouterView />
-=======
-  <TheMenu v-if="!isPagePublic" />
-  <main>
-    <RouterView />
-  </main>
->>>>>>> Stashed changes
 </template>
 
 <style lang="scss">
