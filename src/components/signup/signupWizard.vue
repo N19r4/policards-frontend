@@ -169,8 +169,7 @@ const getUserDataForField = (field: Field) => {
           ></i>
         </div>
       </div>
-      ></template
-    >
+    </template>
     <template #footer>
       <div class="flex gap-3">
         <Button icon="pi pi-arrow-left" @click="stepIndex--" />

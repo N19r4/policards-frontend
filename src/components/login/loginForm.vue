@@ -8,6 +8,9 @@ import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 
 import TheForm from '../global/TheForm.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const credentials = ref({
   username: '',
@@ -35,7 +38,7 @@ const credentials = ref({
       <p>Forgot password?</p>
     </template>
     <template #footer>
-      <Button label="Create an account" outlined />
+      <Button label="Create an account" @click="router.push('/sign-up')" outlined />
     </template>
   </TheForm>
 </template>

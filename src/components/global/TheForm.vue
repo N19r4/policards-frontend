@@ -15,7 +15,7 @@ const props = defineProps<{
       ><h3>{{ props.subtitle }}</h3>
     </template>
     <template #content>
-      <div class="flex flex-column gap-2 my-6">
+      <div class="flex flex-column gap-3 my-6">
         <slot name="content"></slot>
       </div>
     </template>

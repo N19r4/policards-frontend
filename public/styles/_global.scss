@@ -6,25 +6,29 @@
 
 
 body {
-  background-color: $MAIN_BACKGROUND;
-  color: $MAIN_TEXT;
+  // background-color: $MAIN_BACKGROUND;
+  // color: $MAIN_TEXT;
   font-family: 'Nunito';
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  padding: 30px;
 }
 
 h2 {
-    color: $MAIN_TEXT;
-    font-size: 36px;
-    font-weight: bold;
-  }
-  
+  color: $MAIN_TEXT;
+  font-size: 36px;
+  font-weight: bold;
+}
+
 h3 {
-    color: $SUBTITLE;
-    font-size: 24px;
-    font-weight: 300;
+  color: $SUBTITLE;
+  font-size: 24px;
+  font-weight: 300;
 }
