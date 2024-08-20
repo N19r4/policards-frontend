@@ -9,6 +9,8 @@ import { useRoute } from 'vue-router'
 import { computed } from 'vue'
 import { listOfItems } from '../components/library'
 
+const tabName = computed(() => useRoute().query.type)
+
 const catalogues = [
   {
     id: 1,
@@ -94,8 +96,6 @@ const sets = [
     parents: ['Shakespeare Sonnets'],
   },
 ]
-
-const tabName = computed(() => useRoute().query.type)
 
 const tabsConfig = [
   {
