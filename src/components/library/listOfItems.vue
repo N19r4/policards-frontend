@@ -101,7 +101,7 @@ const getSeverity = (item: LibraryItem) => {
                       onIcon="pi pi-heart-fill"
                       offIcon="pi pi-heart"
                       outlined
-                    ></ToggleButton>
+                    />
                     <Button
                       icon="pi pi-pencil"
                       label="Edit"
