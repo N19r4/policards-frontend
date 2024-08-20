@@ -6,7 +6,7 @@ import ToggleButton from 'primevue/togglebutton'
 import Chip from 'primevue/chip'
 
 import { LibraryItem } from './types'
-import { onMounted } from 'vue'
+import { ref } from 'vue'
 
 const props = withDefaults(
   defineProps<{
@@ -14,6 +14,8 @@ const props = withDefaults(
   }>(),
   {},
 )
+
+const items = ref(props.itemsData)
 
 const getSeverity = (item: LibraryItem) => {
   switch (item.status) {
@@ -34,7 +36,7 @@ const getSeverity = (item: LibraryItem) => {
 
 <template>
   <div class="card">
-    <DataView :value="props.itemsData" paginator :rows="5" :sortField="'favourite'" :sortOrder="-1">
+    <DataView :value="items" paginator :rows="5" sortField="rating" :sortOrder="-1">
       <template #header>
         <div class="flex flex-row justify-content-center align-items-center p-5">
           <Button icon="pi pi-plus" size="large" severity="secondary" rounded />
@@ -62,7 +64,7 @@ const getSeverity = (item: LibraryItem) => {
               <div class="flex flex-column md:flex-row justify-content-between md:align-items-center flex-1 gap-6">
                 <div class="flex flex-row md:flex-column justify-content-between align-items-start gap-2">
                   <div>
-                    <span class="font-medium text-surface-500 dark:text-surface-400 text-sm">#{{ item.category }}</span>
+                    <span class="font-medium text-500 dark:text-500 text-sm">#{{ item.category }}</span>
                     <div class="text-lg font-medium mt-2">{{ item.name }}</div>
                   </div>
                   <div class="flex flex-row gap-2">
@@ -78,7 +80,7 @@ const getSeverity = (item: LibraryItem) => {
                           0px 1px 2px 0px rgba(0, 0, 0, 0.06);
                       "
                     >
-                      <span class="text-surface-900 font-medium text-sm">{{ item.rating }}</span>
+                      <span class="text-900 font-medium text-sm">{{ item.rating }}</span>
                       <i class="pi pi-star-fill text-yellow-500"></i>
                     </div>
                   </div>

@@ -89,9 +89,7 @@ const profileMenuItems = ref([
   },
 ])
 
-const toggle = (event) => {
-  menu.value.toggle(event)
-}
+const toggle = (event: Event) => menu.value.toggle(event)
 </script>
 
 <template>
