@@ -110,7 +110,7 @@ const toggle = (event: Event) => menu.value.toggle(event)
         </a>
       </template>
       <template #end>
-        <div class="flex align-items-center gap-2">
+        <div class="flex align-items-end gap-3">
           <IconField>
             <InputText placeholder="Search for..." type="text" class="w-8rem sm:w-auto" />
             <InputIcon class="pi pi-search" />
