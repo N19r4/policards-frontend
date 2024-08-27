@@ -8,32 +8,39 @@
 @forward 'primevue/selectbox.scss';
 @forward 'primevue/button.scss';
 
-
 body {
   background-color: $MAIN_BACKGROUND;
   color: $MAIN_TEXT;
   font-family: 'Nunito';
 }
 
+#app:has(.form) {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 h2 {
-    color: $MAIN_TEXT;
-    font-size: 36px;
-    font-weight: bold;
-  }
-  
-h3 {
-    color: $SUBTITLE;
-    font-size: 24px;
-    font-weight: 300;
+  color: $MAIN_TEXT;
+  font-size: 36px;
+  font-weight: bold;
 }
 
-label, a {
+h3 {
+  color: $SUBTITLE;
+  font-size: 24px;
+  font-weight: 300;
+}
+
+label,
+a {
   color: $SUBTITLE;
   font-size: 16px;
   font-weight: 300;

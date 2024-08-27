@@ -8,7 +8,6 @@ const props = defineProps<{
 </script>
 <template>
   <div class="flex align-items-center">
-    <img src="/assets/images/login-image.jfif" />
     <Card class="form p-5" style="margin: 0 auto">
       <template #title>
         <h2>{{ props.title }}</h2>
