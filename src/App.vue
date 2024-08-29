@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { TheMenu } from './components'
+import { TheMenu } from './components/global'
 </script>
 
 <template>
   <!-- <TheMenu /> -->
-  <RouterView />
+  <RouterView></RouterView>
 </template>
 
 <style lang="scss">

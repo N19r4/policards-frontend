@@ -1,0 +1,5 @@
+@use '../colors' as *; 
+
+.p-togglebutton:not(.p-togglebutton-checked), .p-togglebutton:not(.p-togglebutton-checked)::before {
+background-color: $MAIN_BORDER !important;
+}

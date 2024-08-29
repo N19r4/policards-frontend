@@ -7,35 +7,38 @@ import Password from 'primevue/password'
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 
-import TheForm from '../global/TheForm.vue'
+import TheForm from '../global/reusable/TheForm.vue'
+import { useRouter } from 'vue-router'
 
 const credentials = ref({
   username: '',
   password: '',
 })
+
+const router = useRouter()
 </script>
 
 <template>
   <TheForm title="Welcome back!" subtitle="Log in to continue">
     <template #content>
       <IconField>
+        <InputText v-model="credentials.username" placeholder="email or username" />
         <InputIcon class="pi pi-user" />
-        <InputText id="username" v-model="credentials.username" placeholder="email or username" />
       </IconField>
+
       <Password
-        id="password"
         v-model="credentials.password"
-        type="password"
         :feedback="false"
         placeholder="password"
         toggleMask
+        :onpaste="(e: any) => e.preventDefault()"
       />
 
       <Button label="Log in" icon="pi pi-arrow-right" iconPos="right" />
-      <p>Forgot password?</p>
+      <a href="#">Forgot password?</a>
     </template>
     <template #footer>
-      <Button label="Create an account" outlined />
+      <Button label="Create an account" outlined class="w-full" @click="router.push('/sign-up')" />
     </template>
   </TheForm>
 </template>
