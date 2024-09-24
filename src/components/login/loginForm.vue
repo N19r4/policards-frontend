@@ -44,10 +44,10 @@ const credentials = ref({
 </template>
 
 <style lang="scss" scoped>
-@use '../../../public/styles/colors' as *;
+// @use '../../../public/styles/colors' as *;
 
 p {
-  color: $SUBTITLE;
+  // color: $SUBTITLE;
   font-size: 14px;
   line-height: 24px;
   font-weight: 500;

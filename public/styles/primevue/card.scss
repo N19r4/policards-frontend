@@ -2,5 +2,6 @@
 
 .pc-card {
   // background-color: $MAIN_BACKGROUND !important;
-  border: 1px solid $MAIN_BORDER !important;
+  border: 1px solid $MAIN_BORDER;
+  background-color: rgba($MAIN_BORDER, 0.1) !important;
 }

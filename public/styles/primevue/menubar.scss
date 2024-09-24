@@ -11,7 +11,8 @@
 
 .p-menubar-submenu,
 .p-menu-list,
-.p-menu-end {
-  background-color: #000 !important;
+.p-menu-end,
+.p-menubar-mobile .p-menubar-root-list {
+  background-color: $BLACK !important;
   z-index: 2;
 }

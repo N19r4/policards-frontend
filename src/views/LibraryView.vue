@@ -8,113 +8,28 @@ import TabPanel from 'primevue/tabpanel'
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
 import { listOfItems } from '../components/library'
+import { tabsConfig } from './data'
 
 const tabName = computed(() => useRoute().query.type)
 
-const catalogues = [
+const listOfCards = [
   {
-    id: 1,
-    category: 'Math',
-    name: 'Algebra II',
-    status: 'not started',
-    rating: 4.5,
-    childrenNumber: 3,
-    grandChildrenNumber: 342,
-    favourite: false,
+    title: 'Advanced Card',
+    subtitle: 'Card subtitle',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!',
   },
   {
-    id: 2,
-    category: 'English',
-    name: 'Shakespeare Sonnets',
-    status: 'completed',
-    rating: 4.8,
-    childrenNumber: 1,
-    grandChildrenNumber: 123,
-    favourite: true,
+    title: 'Advanced Card',
+    subtitle: 'Card subtitle',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!',
   },
   {
-    id: 3,
-    category: 'Physics',
-    name: 'Quantum Mechanics',
-    status: 'learning',
-    rating: 4.2,
-    childrenNumber: 2,
-    grandChildrenNumber: 234,
-    favourite: false,
-  },
-  {
-    id: 4,
-    category: 'Biology',
-    name: 'Human Anatomy',
-    status: 'completed',
-    rating: 4.9,
-    childrenNumber: 1,
-    grandChildrenNumber: 123,
-    favourite: true,
-  },
-  {
-    id: 5,
-    category: 'History',
-    name: 'World War II',
-    status: 'not started',
-    rating: 4.1,
-    childrenNumber: 3,
-    grandChildrenNumber: 342,
-    favourite: false,
-  },
-  {
-    id: 6,
-    category: 'Chemistry',
-    name: 'Organic Chemistry',
-    status: 'learning',
-    rating: 4.7,
-    childrenNumber: 2,
-    grandChildrenNumber: 234,
-    favourite: false,
-  },
-]
-
-const sets = [
-  {
-    id: 1,
-    category: 'Math',
-    name: 'Logic statements and truth tables',
-    status: 'not started',
-    rating: 4.5,
-    grandChildrenNumber: 342,
-    favourite: false,
-    parents: ['Algebra II', 'Quantum Mechanics'],
-  },
-  {
-    id: 2,
-    category: 'English',
-    name: 'Sonnet 18',
-    status: 'completed',
-    rating: 4.8,
-    grandChildrenNumber: 123,
-    favourite: true,
-    parents: ['Shakespeare Sonnets'],
-  },
-]
-
-const tabsConfig = [
-  {
-    label: 'Flashcard sets',
-    name: 'flashcard',
-    icon: 'pi pi-credit-card',
-    items: sets,
-  },
-  {
-    label: 'Catalogues',
-    name: 'catalogue',
-    icon: 'pi pi-folder',
-    items: catalogues,
-  },
-  {
-    label: 'Learning paths',
-    name: 'learning-path',
-    icon: 'pi pi-compass',
-    items: [],
+    title: 'Advanced Card',
+    subtitle: 'Card subtitle',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!',
   },
 ]
 </script>
@@ -133,4 +48,33 @@ const tabsConfig = [
       </TabPanel>
     </TabPanels>
   </Tabs>
+
+  <div>
+    <Card
+      v-for="card in listOfCards"
+      :key="card.title"
+      class="card__props"
+      style="
+        width: 25rem;
+        overflow: hidden;
+        width: 380px;
+        height: 530px;
+        display: flex;
+        margin-top: 8rem;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <template #header> </template>
+      <template #title>{{ card.title }}</template>
+      <template #subtitle>{{ card.subtitle }}</template>
+      <template #content>
+        <p class="m-0">
+          {{ card.content }}
+        </p>
+      </template>
+    </Card>
+  </div>
 </template>

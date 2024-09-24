@@ -12,10 +12,12 @@ onMounted(() => (currentPath.value = useRoute().path))
 
 <template>
   <TheMenu v-if="!publicPages.includes(currentPath)" />
-  <RouterView />
+  <main>
+    <router-view />
+  </main>
 </template>
 
 <style lang="scss">
-@use '../public//styles/font';
-@use '../public//styles/global';
+@use 'public/styles/font';
+@use 'public/styles/global';
 </style>

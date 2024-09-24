@@ -81,6 +81,9 @@ const profileMenuItems = ref([
       {
         label: 'Logout',
         icon: 'pi pi-sign-out',
+        command: () => {
+          router.push('/login')
+        },
       },
     ],
   },
@@ -93,7 +96,7 @@ const toggle = (event: Event) => menu.value.toggle(event)
 </script>
 
 <template>
-  <div class="card">
+  <div class="pc-card fixed w-full z-3">
     <Menubar :model="items">
       <template #item="{ item, props, hasSubmenu, root }">
         <a class="flex align-items-center" v-bind="props.action">
@@ -112,7 +115,7 @@ const toggle = (event: Event) => menu.value.toggle(event)
       <template #end>
         <div class="flex align-items-end gap-3">
           <IconField>
-            <InputText placeholder="Search for..." type="text" class="w-8rem sm:w-auto" />
+            <InputText placeholder="Search for..." type="text" class="search-bar" />
             <InputIcon class="pi pi-search" />
           </IconField>
 
@@ -156,5 +159,13 @@ const toggle = (event: Event) => menu.value.toggle(event)
 <style lang="scss" scoped>
 .p-avatar {
   cursor: pointer;
+}
+
+.search-bar {
+  width: 30vw;
+}
+
+.pc-card {
+  background-color: rgba($MAIN_BORDER, 0.7) !important;
 }
 </style>
