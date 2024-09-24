@@ -1,0 +1,18 @@
+@use '../colors' as *;
+
+.p-menubar-end {
+  display: flex;
+  flex: 1;
+  & > div {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.p-menubar-submenu,
+.p-menu-list,
+.p-menu-end,
+.p-menubar-mobile .p-menubar-root-list {
+  background-color: $BLACK !important;
+  z-index: 2;
+}

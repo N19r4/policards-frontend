@@ -3,14 +3,12 @@
 @use './animations' as *;
 
 @forward './body.scss';
-
 @forward 'primevue/card.scss';
-@forward 'primevue/selectbox.scss';
+@forward 'primevue/menubar.scss';
+@forward 'primevue/carousel.scss';
 @forward 'primevue/button.scss';
 
 body {
-  background-color: $MAIN_BACKGROUND;
-  color: $MAIN_TEXT;
   font-family: 'Nunito';
 }
 
@@ -27,6 +25,16 @@ body {
   padding: 0;
 }
 
+main {
+  padding: 100px 200px;
+}
+
+h1 {
+  color: $MAIN_TEXT;
+  font-size: 48px;
+  font-weight: bold;
+}
+
 h2 {
   color: $MAIN_TEXT;
   font-size: 36px;
@@ -37,6 +45,17 @@ h3 {
   color: $SUBTITLE;
   font-size: 24px;
   font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+}
+
+.p-menu-end,
+.p-menubar-submenu,
+.p-menu-list {
+  background-color: #000 !important;
+  z-index: 2 !important;
 }
 
 label,

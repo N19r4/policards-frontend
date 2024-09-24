@@ -1,0 +1,162 @@
+const catalogues = [
+  {
+    id: 1,
+    category: 'Math',
+    name: 'Algebra II',
+    status: 'not started',
+    rating: 4.5,
+    childrenNumber: 3,
+    grandChildrenNumber: 342,
+    description: 'Learn about algebraic structures and operations.',
+    favourite: false,
+    authorImage: 'https://avatar.iran.liara.run/public',
+    author: 'liara445',
+  },
+  {
+    id: 2,
+    category: 'English',
+    name: 'Shakespeare Sonnets',
+    status: 'completed',
+    rating: 4.8,
+    childrenNumber: 1,
+    grandChildrenNumber: 123,
+    description: 'A collection of 154 sonnets written by William Shakespeare.',
+    favourite: true,
+    authorImage: 'https://avatar.iran.liara.run/public',
+    author: 'andy2002345joel',
+  },
+  {
+    id: 3,
+    category: 'Physics',
+    name: 'Quantum Mechanics',
+    status: 'learning',
+    rating: 4.2,
+    childrenNumber: 2,
+    grandChildrenNumber: 234,
+    description:
+      'A fundamental theory in physics that provides a description of the physical properties of nature at the scale of atoms and subatomic particles.',
+    favourite: false,
+    author: 'testUser',
+  },
+  {
+    id: 4,
+    category: 'Biology',
+    name: 'Human Anatomy',
+    status: 'completed',
+    rating: 4.9,
+    childrenNumber: 1,
+    grandChildrenNumber: 123,
+    description: 'The study of the structure of the human body.',
+    favourite: true,
+    author: 'testUser',
+  },
+  {
+    id: 5,
+    category: 'History',
+    name: 'World War II',
+    status: 'not started',
+    rating: 4.1,
+    childrenNumber: 3,
+    grandChildrenNumber: 342,
+    description: 'A global war that lasted from 1939 to 1945.',
+    favourite: false,
+    author: 'testUser',
+  },
+  {
+    id: 6,
+    category: 'Chemistry',
+    name: 'Organic Chemistry',
+    status: 'learning',
+    rating: 4.7,
+    childrenNumber: 2,
+    grandChildrenNumber: 234,
+    description:
+      'The study of the structure, properties, composition, reactions, and preparation of carbon-containing compounds.',
+    favourite: false,
+    author: 'testUser',
+  },
+]
+
+const sets = [
+  {
+    id: 1,
+    category: 'Math',
+    name: 'Logic statements and truth tables',
+    status: 'not started',
+    rating: 4.5,
+    grandChildrenNumber: 342,
+    description: 'Learn about logic statements and truth tables.',
+    favourite: false,
+    parents: ['Algebra II', 'Quantum Mechanics'],
+    authorImage: 'https://avatar.iran.liara.run/public',
+    author: 'donkey123',
+  },
+  {
+    id: 2,
+    category: 'English',
+    name: 'Sonnet 18',
+    status: 'completed',
+    rating: 4.8,
+    grandChildrenNumber: 123,
+    description: 'An analysis of Shakespeare’s Sonnet 18.',
+    favourite: true,
+    parents: ['Shakespeare Sonnets'],
+    author: 'testUser',
+  },
+]
+
+export const tabsConfig = [
+  {
+    label: 'Flashcard sets',
+    name: 'flashcard',
+    icon: 'pi pi-credit-card',
+    items: sets,
+  },
+  {
+    label: 'Catalogues',
+    name: 'catalogue',
+    icon: 'pi pi-folder',
+    items: catalogues,
+  },
+  {
+    label: 'Learning paths',
+    name: 'learning-path',
+    icon: 'pi pi-compass',
+    items: [],
+  },
+]
+
+const testUser = 'testUser'
+
+export const mainHubConfig = [
+  {
+    label: 'Flashcard sets',
+    category: 'Recent',
+    name: 'flashcard',
+    items: sets.filter((set) => set.author !== testUser),
+  },
+  {
+    label: 'Catalogues',
+    category: 'Recent',
+    name: 'catalogue',
+    items: catalogues.filter((set) => set.author !== testUser),
+  },
+  {
+    label: 'Flashcard sets',
+    category: 'My',
+    name: 'flashcard',
+    items: sets.filter((set) => set.author === testUser),
+  },
+  {
+    label: 'Catalogues',
+    category: 'My',
+    name: 'catalogue',
+    items: catalogues.filter((set) => set.author === testUser),
+  },
+  {
+    label: 'Learning paths',
+    category: 'My',
+    name: 'learning-path',
+    items: [],
+  },
+]

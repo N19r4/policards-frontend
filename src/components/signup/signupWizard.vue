@@ -10,7 +10,7 @@ import Divider from 'primevue/divider'
 import Checkbox from 'primevue/checkbox'
 import ToggleButton from 'primevue/togglebutton'
 
-import TheForm from '../global/reusable/TheForm.vue'
+import { TheForm } from '../global'
 
 import { WizardStep } from './types'
 import { useRouter } from 'vue-router'
@@ -235,7 +235,6 @@ const checkIfValid = () => {
           <i v-if="field.invalid" v-tooltip="field.message" class="pi pi-exclamation-circle text-red-500"></i>
         </div>
       </div>
-      >
     </template>
     <template #footer>
       <div class="flex gap-3">

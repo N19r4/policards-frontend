@@ -10,12 +10,12 @@ import InputIcon from 'primevue/inputicon'
 import TheForm from '../global/reusable/TheForm.vue'
 import { useRouter } from 'vue-router'
 
+const router = useRouter()
+
 const credentials = ref({
   username: '',
   password: '',
 })
-
-const router = useRouter()
 </script>
 
 <template>
@@ -38,16 +38,16 @@ const router = useRouter()
       <a href="#">Forgot password?</a>
     </template>
     <template #footer>
-      <Button label="Create an account" outlined class="w-full" @click="router.push('/sign-up')" />
+      <Button label="Create an account" @click="router.push('/sign-up')" outlined />
     </template>
   </TheForm>
 </template>
 
 <style lang="scss" scoped>
-@use '../../../public/styles/colors' as *;
+// @use '../../../public/styles/colors' as *;
 
 p {
-  color: $SUBTITLE;
+  // color: $SUBTITLE;
   font-size: 14px;
   line-height: 24px;
   font-weight: 500;
