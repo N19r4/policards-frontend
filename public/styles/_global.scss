@@ -1,13 +1,22 @@
 @use './colors' as *;
 @use './font' as *;
+@use './animations' as *;
 
 @forward './body.scss';
 @forward 'primevue/card.scss';
 @forward 'primevue/menubar.scss';
 @forward 'primevue/carousel.scss';
+@forward 'primevue/button.scss';
 
 body {
   font-family: 'Nunito';
+}
+
+#app:has(.form) {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
 }
 
 * {
@@ -47,4 +56,11 @@ a {
 .p-menu-list {
   background-color: #000 !important;
   z-index: 2 !important;
+}
+
+label,
+a {
+  color: $SUBTITLE;
+  font-size: 16px;
+  font-weight: 300;
 }

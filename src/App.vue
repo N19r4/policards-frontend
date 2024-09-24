@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { TheMenu } from './components/global/used-once'
+import { TheMenu } from './components/global'
 
 const publicPages = ['/login', '/signup']
 
